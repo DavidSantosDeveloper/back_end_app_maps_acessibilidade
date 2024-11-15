@@ -34,7 +34,7 @@ public class TipoAcessibilidade {
 
     private String descricao;
     
-      @OneToMany(mappedBy = "tipoDeAcessibilidade")
+      @OneToMany(mappedBy = "tipoAcessibilidade")
     private List<ItemAcessibilidade> itemAcessibilidades; 
     
     

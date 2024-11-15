@@ -13,6 +13,6 @@ import com.app.acessibilidade.api.domain.model.*;
 public interface FotoRepository extends JpaRepository<Foto,Long> {
    Foto findById(long id);
 
-     @Query("SELECT new com.jogos.ecommerce.domain.dto.output.OUTPUT_Foto_DTO(f.id,f.imagem) FROM Foto f")
+     @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Foto_DTO(f.id,f.imagem) FROM Foto f")
     List<OUTPUT_Foto_DTO> findAllFotos();
 }
