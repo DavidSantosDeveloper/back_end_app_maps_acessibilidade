@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.acessibilidade.api.domain.dto.*;
+
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Avaliacao_DTO;
 import com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO;
 import com.app.acessibilidade.api.domain.exception.*;

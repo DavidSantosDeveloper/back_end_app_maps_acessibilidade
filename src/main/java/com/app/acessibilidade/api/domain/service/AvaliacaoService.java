@@ -3,7 +3,7 @@ package com.app.acessibilidade.api.domain.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.acessibilidade.api.domain.dto.*;
+
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Avaliacao_DTO;
 import com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO;
 import com.app.acessibilidade.api.domain.exception.*;
