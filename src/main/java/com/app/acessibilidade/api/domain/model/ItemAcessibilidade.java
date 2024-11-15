@@ -35,6 +35,12 @@ public class ItemAcessibilidade {
     @JoinColumn(name = "id_local", nullable = false)
     private Local local; // Cada item de acessibilidade está associado a um único local
 
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_acessibilidade", nullable = true) // Nullable = true, pois nem todo item de acessibilidade precisa ter um tipo
+    private TipoAcessibilidade tipoAcessibilidade; // Cada ItemAcessibilidade pode ter no máximo um TipoDeAcessibilidade
+
+
+
 
 
 }
