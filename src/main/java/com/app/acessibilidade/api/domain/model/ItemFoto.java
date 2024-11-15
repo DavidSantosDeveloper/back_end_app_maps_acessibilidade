@@ -32,6 +32,11 @@ public class ItemFoto {
      @ManyToOne
     @JoinColumn(name = "id_avaliacao", nullable = false)
     private Avaliacao avaliacao; 
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_foto", nullable = true) // Nullable = true, pois não é obrigatório ter uma foto associada
+    private Foto foto; 
     
     
 }
