@@ -1,6 +1,7 @@
 package com.app.acessibilidade.api.domain.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,6 +39,19 @@ public class Avaliacao {
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_local", nullable = false)
+    private Local local; // Relacionamento com Local (uma avaliação tem no máximo um local)
+
+
+    @OneToMany(mappedBy = "avaliacao")
+    private List<ItemFoto> itemFotos;
+    
+
+
+
+
 
     
 }

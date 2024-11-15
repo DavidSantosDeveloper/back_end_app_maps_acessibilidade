@@ -2,11 +2,14 @@ package com.app.acessibilidade.api.domain.model;
 
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -32,4 +35,11 @@ public class Local {
 
     private String latitude;
     private String longitude;
+
+     @OneToMany(mappedBy = "local")
+    private List<Avaliacao> avaliacoes;
+
+    @OneToMany(mappedBy = "local")
+    private List<ItemAcessibilidade> itemAcessibilidades; // Um local pode ter vários itens de acessibilidade
+
 }
