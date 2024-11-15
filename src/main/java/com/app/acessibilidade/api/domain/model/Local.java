@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded=true)
 @AllArgsConstructor
-
+@NoArgsConstructor
 
 public class Local {
     @Id
@@ -31,9 +32,12 @@ public class Local {
     @Column(name="id")
     private Long id;
     
+    @Column(name = "localizacao", columnDefinition = "TEXT")
     private  String localizacao;
 
+    @Column(name ="latitude", columnDefinition = "TEXT")
     private String latitude;
+    @Column(name ="longitude", columnDefinition = "TEXT")
     private String longitude;
 
      @OneToMany(mappedBy = "local")

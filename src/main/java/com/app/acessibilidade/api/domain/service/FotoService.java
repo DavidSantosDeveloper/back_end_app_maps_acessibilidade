@@ -2,6 +2,7 @@ package com.app.acessibilidade.api.domain.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.acessibilidade.api.domain.dto.*;
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Foto_DTO;
@@ -12,6 +13,9 @@ import com.app.acessibilidade.api.domain.repository.*;
 
 
 import lombok.AllArgsConstructor;
+
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +23,24 @@ import java.util.Optional;
 @Service
 public class FotoService {
     private FotoRepository fotoRepository;
+    
+     @Transactional
+    public OUTPUT_Foto_DTO salvarImagemBase64(MultipartFile file) throws IOException {
+        // Converte o arquivo MultipartFile para um array de bytes
+        byte[] bytes = file.getBytes();
+
+        // Converte o array de bytes para uma string Base64
+        String imagemBase64 = Base64.getEncoder().encodeToString(bytes);
+
+        // Cria o objeto Foto com a string Base64
+        Foto foto = new Foto(null, imagemBase64, null);
+
+        // Salva a foto no banco de dados
+        Foto fotoSalva = fotoRepository.save(foto);
+
+        // Retorna a foto salva como um DTO
+        return new OUTPUT_Foto_DTO(fotoSalva.getId(), fotoSalva.getImagem());
+    }
     
       public OUTPUT_Foto_DTO findById(Long fotoId){
         Optional<Foto> buscaPelaFoto=fotoRepository.findById(fotoId);

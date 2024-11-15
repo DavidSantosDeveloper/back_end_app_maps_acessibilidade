@@ -32,7 +32,7 @@ public class ItemAcessibilidade {
    
 
     @ManyToOne
-    @JoinColumn(name = "id_local", nullable = false)
+    @JoinColumn(name = "id_local", nullable = false )
     private Local local; // Cada item de acessibilidade está associado a um único local
 
     @ManyToOne

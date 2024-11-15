@@ -31,7 +31,7 @@ public class Foto {
     @EqualsAndHashCode.Include
     @Column(name="id")
     private Long id;
-    
+    @Column(name = "imagem", columnDefinition = "TEXT")
     private  String imagem;
 
      @OneToMany(mappedBy = "foto")

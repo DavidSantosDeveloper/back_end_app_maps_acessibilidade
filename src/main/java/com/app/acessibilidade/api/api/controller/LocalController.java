@@ -25,6 +25,20 @@ public class LocalController {
     public List<OUTPUT_Local_DTO> listar() {
         return localService.listarLocais();
     }
+    @GetMapping("/coordenadas")
+    public ResponseEntity<List<OUTPUT_Local_DTO>> buscarPorCoordenadas(
+        @RequestParam String latitude, 
+        @RequestParam String longitude) {
+        
+        List<OUTPUT_Local_DTO> locais = localService.buscarPorCoordenadas(latitude, longitude);
+        
+        if (locais.isEmpty()) {
+            return ResponseEntity.noContent().build();  // Retorna 204 caso não haja locais encontrados
+        }
+    
+        return ResponseEntity.ok(locais);  // Retorna 200 com os locais encontrados
+        }
+
 
     @GetMapping("/{localId}")
     public ResponseEntity<OUTPUT_Local_DTO> buscarPorId(@PathVariable Long localId) {

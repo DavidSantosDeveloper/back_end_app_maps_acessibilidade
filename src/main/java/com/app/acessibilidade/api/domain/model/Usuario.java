@@ -29,10 +29,13 @@ public class Usuario {
     @Column(name="id")
     private Long id;
     
+    @Column(name = "nome", columnDefinition = "TEXT")
     private  String nome;
     
+    @Column(name = "email", columnDefinition = "TEXT")
     private  String email;
 
+    @Column(name = "senha", columnDefinition = "TEXT")
     private  String senha;
 
 

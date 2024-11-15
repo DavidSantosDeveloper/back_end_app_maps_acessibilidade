@@ -33,7 +33,7 @@ public class Avaliacao {
     @EqualsAndHashCode.Include
     @Column(name="id")
     private Long id;
-    
+    @Column(name = "comentario", columnDefinition = "TEXT")
     private  String comentario;
     
     private  String estrelas;

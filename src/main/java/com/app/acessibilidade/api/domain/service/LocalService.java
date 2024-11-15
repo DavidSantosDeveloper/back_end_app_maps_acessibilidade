@@ -10,14 +10,37 @@ import com.app.acessibilidade.api.domain.repository.LocalRepository;
 
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class LocalService {
 
     private final LocalRepository localRepository;
+
+    public List<OUTPUT_Local_DTO> buscarPorCoordenadas(String latitude, String longitude) {
+    // Obter os locais com as coordenadas fornecidas
+    List<Local> locais = localRepository.findByLatitudeAndLongitude(latitude, longitude);
+    
+    // Criar uma lista de DTOs para os locais encontrados
+    List<OUTPUT_Local_DTO> outputLocais = new ArrayList<>();
+    
+    // Iterar pelos locais e transformar cada Local em um OUTPUT_Local_DTO
+    for (Local local : locais) {
+        OUTPUT_Local_DTO localDTO = new OUTPUT_Local_DTO(local);
+        outputLocais.add(localDTO);
+    }
+    
+    return outputLocais;  // Retorna a lista de DTOs
+   }
+
+    
+    
+
 
     // Método para buscar um Local pelo ID
     public OUTPUT_Local_DTO findById(Long localId) {

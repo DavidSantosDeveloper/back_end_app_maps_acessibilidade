@@ -29,9 +29,11 @@ public class TipoAcessibilidade {
     @EqualsAndHashCode.Include
     @Column(name="id")
     private Long id;
-    
+
+    @Column(name = "nome", columnDefinition = "TEXT")
     private  String nome;
 
+    @Column(name ="descricao", columnDefinition = "TEXT")
     private String descricao;
     
       @OneToMany(mappedBy = "tipoAcessibilidade")

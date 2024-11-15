@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.acessibilidade.api.domain.dto.*;
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Avaliacao_DTO;
@@ -42,7 +44,19 @@ public class FotoController {
     @Autowired
     private FotoService fotoService;
 
-
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/upload")
+    public ResponseEntity<OUTPUT_Foto_DTO> cadastrar(@RequestParam("file") MultipartFile file) {
+        try {
+            // Converte a imagem para Base64 e salva
+            OUTPUT_Foto_DTO fotoDTO = fotoService.salvarImagemBase64(file);
+            return ResponseEntity.status(HttpStatus.CREATED).body(fotoDTO);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+      
+        }
+    }
+    
     @GetMapping("")
     public List<OUTPUT_Foto_DTO> listar(){
      
