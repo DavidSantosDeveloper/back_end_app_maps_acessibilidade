@@ -1,5 +1,7 @@
 package com.app.acessibilidade.api.domain.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +34,9 @@ public class Usuario {
     private  String email;
 
     private  String senha;
+
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Avaliacao> avaliacoes;
 
 }
