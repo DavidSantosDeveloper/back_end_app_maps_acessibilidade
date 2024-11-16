@@ -13,6 +13,6 @@ import com.app.acessibilidade.api.domain.model.*;
 public interface ItemAcessibilidadeRepository extends JpaRepository<ItemAcessibilidade,Long> {
    ItemAcessibilidade findById(long id);
 
-     @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_ItemAcessibilidade_DTO(ia.id,ia.local,ia.tipoAcessibilidade.id) FROM ItemAcessibilidade ia")
+     @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_ItemAcessibilidade_DTO(ia.id,ia.local.id,ia.tipoAcessibilidade.id) FROM ItemAcessibilidade ia")
     List<OUTPUT_ItemAcessibilidade_DTO> findAllItemAcessibilidade();
 }
