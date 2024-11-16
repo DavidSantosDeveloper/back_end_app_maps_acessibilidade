@@ -24,7 +24,7 @@ public class ItemAcessibilidadeService {
             return null;
         }
         ItemAcessibilidade itemAcessibilidade = buscaPeloItemAcessibilidade.get();
-        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidade.getId(), itemAcessibilidade.getLocal(), itemAcessibilidade.getTipoAcessibilidade());
+        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidade.getId(), itemAcessibilidade.getLocal().getId(), itemAcessibilidade.getTipoAcessibilidade().getId());
     }
 
     public List<OUTPUT_ItemAcessibilidade_DTO> listarItemAcessibilidade() {
@@ -35,14 +35,14 @@ public class ItemAcessibilidadeService {
     public OUTPUT_ItemAcessibilidade_DTO salvar(INPUT_ItemAcessibilidade_DTO itemAcessibilidadeDTO) {
         ItemAcessibilidade itemAcessibilidadeSemId = new ItemAcessibilidade(null, itemAcessibilidadeDTO.local(), itemAcessibilidadeDTO.tipoAcessibilidade());
         ItemAcessibilidade itemAcessibilidadeComId = itemAcessibilidadeRepository.save(itemAcessibilidadeSemId);
-        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidadeComId.getId(), itemAcessibilidadeComId.getLocal(), itemAcessibilidadeComId.getTipoAcessibilidade());
+        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidadeComId.getId(), itemAcessibilidadeComId.getLocal().getId(), itemAcessibilidadeComId.getTipoAcessibilidade().getId());
     }
 
     @Transactional
     public OUTPUT_ItemAcessibilidade_DTO editar(INPUT_ItemAcessibilidade_DTO itemAcessibilidadeDTO) {
         ItemAcessibilidade itemAcessibilidadeSemId = new ItemAcessibilidade(null, itemAcessibilidadeDTO.local(), itemAcessibilidadeDTO.tipoAcessibilidade());
         ItemAcessibilidade itemAcessibilidadeComId = itemAcessibilidadeRepository.save(itemAcessibilidadeSemId);
-        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidadeComId.getId(), itemAcessibilidadeComId.getLocal(), itemAcessibilidadeComId.getTipoAcessibilidade());
+        return new OUTPUT_ItemAcessibilidade_DTO(itemAcessibilidadeComId.getId(), itemAcessibilidadeComId.getLocal().getId(), itemAcessibilidadeComId.getTipoAcessibilidade().getId());
     }
 
     @Transactional
