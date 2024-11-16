@@ -7,6 +7,11 @@ WORKDIR /app
 # Copie o arquivo JAR gerado pela aplicação para o contêiner
 COPY target/api-0.0.1-SNAPSHOT.jar app.jar
 
+# Copie o script wait-for-it.sh
+COPY wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
+
 # Expõe a porta onde a aplicação Spring Boot estará rodando
 EXPOSE 8080
 
