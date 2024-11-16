@@ -14,6 +14,9 @@ import com.app.acessibilidade.api.domain.dto.outuput.*;
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao,Long> {
     Avaliacao findById(long id);
 
-     @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO(a.id, a.comentario,a.estrelas,a.dt_avaliacao,a.usuario,a.local) FROM Avaliacao a")
+    
+    // @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO(a.id, a.comentario,a.estrelas,a.dt_avaliacao,a.usuario,a.local) FROM Avaliacao a")
+    @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO(a.id, a.comentario, a.estrelas, a.dt_avaliacao, a.usuario.id, a.local.id) " +
+    "FROM Avaliacao a")
     List<OUTPUT_Avaliacao_DTO> findAllAvaliacoes();
 }
