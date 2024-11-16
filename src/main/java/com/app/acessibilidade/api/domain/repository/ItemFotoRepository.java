@@ -15,6 +15,6 @@ public interface ItemFotoRepository extends JpaRepository<ItemFoto, Long> {
     ItemFoto findById(long id);
 
     // Query personalizada para retornar todos os ItemFoto em formato de DTO
-    @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_ItemFoto_DTO(i.id, i.avaliacao, i.foto) FROM ItemFoto i")
+    @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_ItemFoto_DTO(i.id, i.avaliacao.id, i.foto.id) FROM ItemFoto i")
     List<OUTPUT_ItemFoto_DTO> findAllItemFotos();
 }

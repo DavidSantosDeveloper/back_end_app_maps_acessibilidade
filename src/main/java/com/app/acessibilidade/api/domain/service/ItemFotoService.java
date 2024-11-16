@@ -26,7 +26,7 @@ public class ItemFotoService {
             return null;  // ou lançar uma exceção personalizada, caso necessário
         }
         ItemFoto itemFoto = buscaPeloItemFoto.get();
-        return new OUTPUT_ItemFoto_DTO(itemFoto.getId(), itemFoto.getAvaliacao(), itemFoto.getFoto());
+        return new OUTPUT_ItemFoto_DTO(itemFoto.getId(), itemFoto.getAvaliacao().getId(), itemFoto.getFoto().getId());
     }
 
     // Método para listar todos os ItemFoto
@@ -39,7 +39,7 @@ public class ItemFotoService {
     public OUTPUT_ItemFoto_DTO salvar(INPUT_ItemFoto_DTO itemFotoDTO) {
         ItemFoto itemFotoSemId = new ItemFoto(null, itemFotoDTO.avaliacao(), itemFotoDTO.foto());
         ItemFoto itemFotoComId = itemFotoRepository.save(itemFotoSemId);
-        return new OUTPUT_ItemFoto_DTO(itemFotoComId.getId(), itemFotoComId.getAvaliacao(), itemFotoComId.getFoto());
+        return new OUTPUT_ItemFoto_DTO(itemFotoComId.getId(), itemFotoComId.getAvaliacao().getId(), itemFotoComId.getFoto().getId());
     }
 
     // Método para editar um ItemFoto existente
@@ -47,7 +47,7 @@ public class ItemFotoService {
     public OUTPUT_ItemFoto_DTO editar(INPUT_ItemFoto_DTO itemFotoDTO) {
         ItemFoto itemFotoSemId = new ItemFoto(null, itemFotoDTO.avaliacao(), itemFotoDTO.foto());
         ItemFoto itemFotoComId = itemFotoRepository.save(itemFotoSemId);
-        return new OUTPUT_ItemFoto_DTO(itemFotoComId.getId(), itemFotoComId.getAvaliacao(), itemFotoComId.getFoto());
+        return new OUTPUT_ItemFoto_DTO(itemFotoComId.getId(), itemFotoComId.getAvaliacao().getId(), itemFotoComId.getFoto().getId());
     }
 
     // Método para excluir um ItemFoto
