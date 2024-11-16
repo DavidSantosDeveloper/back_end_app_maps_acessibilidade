@@ -3,6 +3,7 @@ package com.app.acessibilidade.api.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,12 +30,12 @@ public class ItemFoto {
     @Column(name="id")
     private Long id;
 
-     @ManyToOne
+     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_avaliacao", nullable = false)
     private Avaliacao avaliacao; 
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_foto", nullable = true) // Nullable = true, pois não é obrigatório ter uma foto associada
     private Foto foto; 
     

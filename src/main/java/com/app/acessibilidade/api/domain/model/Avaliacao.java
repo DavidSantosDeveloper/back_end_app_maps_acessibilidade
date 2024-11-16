@@ -39,16 +39,16 @@ public class Avaliacao {
     private  String estrelas;
     private  Date dt_avaliacao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_local", nullable = false)
     private Local local; // Relacionamento com Local (uma avaliação tem no máximo um local)
 
 
-    @OneToMany(mappedBy = "avaliacao")
+    @OneToMany(mappedBy = "avaliacao",fetch = FetchType.LAZY)
     private List<ItemFoto> itemFotos;
     
 
