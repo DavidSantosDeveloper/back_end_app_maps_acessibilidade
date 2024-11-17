@@ -1,6 +1,7 @@
 package com.app.acessibilidade.api.api.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,16 +47,36 @@ public class FotoController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/upload")
-    public ResponseEntity<OUTPUT_Foto_DTO> cadastrar(@RequestParam("file") MultipartFile file) {
-        try {
-            // Converte a imagem para Base64 e salva
-            OUTPUT_Foto_DTO fotoDTO = fotoService.salvarImagemBase64(file);
-            return ResponseEntity.status(HttpStatus.CREATED).body(fotoDTO);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
-      
-        }
+   public ResponseEntity<List<OUTPUT_Foto_DTO>> cadastrar(@RequestParam("files") List<MultipartFile> files) {
+    if (files == null || files.isEmpty()) {
+        // Retorna uma resposta 400 se nenhuma foto for enviada
+        return ResponseEntity.badRequest().build();
     }
+
+    List<OUTPUT_Foto_DTO> fotosSalvas = new ArrayList<>(); // Lista para armazenar as fotos salvas
+
+    try {
+        for (MultipartFile file : files) {
+            // Salva cada imagem e adiciona à lista de resultados
+            OUTPUT_Foto_DTO fotoSalva = fotoService.salvarImagemBase64(file);
+            fotosSalvas.add(fotoSalva);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(fotosSalvas);
+    } catch (Exception e) {
+        // Retorna uma resposta 400 em caso de erro
+        return ResponseEntity.badRequest().build();
+    }
+}
+    // public ResponseEntity<OUTPUT_Foto_DTO> cadastrar(@RequestParam("file") MultipartFile file) {
+    //     try {
+    //         // Converte a imagem para Base64 e salva
+    //         OUTPUT_Foto_DTO fotoDTO = fotoService.salvarImagemBase64(file);
+    //         return ResponseEntity.status(HttpStatus.CREATED).body(fotoDTO);
+    //     } catch (Exception e) {
+    //         return ResponseEntity.badRequest().body(null);
+      
+    //     }
+    // }
     
     @GetMapping("")
     public List<OUTPUT_Foto_DTO> listar(){
