@@ -28,10 +28,25 @@ public class ItemFotoController {
     @Autowired
     private ItemFotoRepository itemFotoRepository;
 
+
+
     @GetMapping("")
-    public List<OUTPUT_ItemFoto_DTO> listar() {
-        return itemFotoService.listarItemFotos();
+    public ResponseEntity<List<OUTPUT_ItemFoto_DTO>> listarPorIdAvaliacao(
+            @RequestParam(value = "id_avaliacao", required = false) Long idAvaliacao) {
+    
+        // Lista itens filtrados ou todos se idAvaliacao for nulo
+        List<OUTPUT_ItemFoto_DTO> itens = itemFotoService.listarPorAvaliacao(idAvaliacao);
+    
+        if (itens.isEmpty()) {
+            return ResponseEntity.noContent().build(); // 204 - Sem conteúdo
+        }
+        return ResponseEntity.ok(itens);
     }
+    
+    // @GetMapping("")
+    // public List<OUTPUT_ItemFoto_DTO> listar() {
+    //     return itemFotoService.listarItemFotos();
+    // }
 
     @GetMapping("/{itemFotoId}")
     public ResponseEntity<OUTPUT_ItemFoto_DTO> buscarPorId(@PathVariable Long itemFotoId) {
