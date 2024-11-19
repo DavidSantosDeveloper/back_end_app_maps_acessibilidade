@@ -42,11 +42,11 @@ public class AvaliacaoController {
 
     @GetMapping("/filtrar")
 public List<OUTPUT_Avaliacao_DTO> filtrarAvaliacoes(
-        @RequestParam(required = false) Long idLocal,
+        @RequestParam(required = false) Long id_local,
         @RequestParam(required = false) String estrelas) {
 
     // Passa os parâmetros opcionais para o Service
-    return avaliacaoService.filtrarAvaliacoes(idLocal, estrelas);
+    return avaliacaoService.filtrarAvaliacoes(id_local, estrelas);
  }
 
 
