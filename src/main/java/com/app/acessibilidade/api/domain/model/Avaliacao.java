@@ -50,7 +50,9 @@ public class Avaliacao {
 
     @OneToMany(mappedBy = "avaliacao",fetch = FetchType.LAZY)
     private List<ItemFoto> itemFotos;
-    
+
+
+   
 
 
 

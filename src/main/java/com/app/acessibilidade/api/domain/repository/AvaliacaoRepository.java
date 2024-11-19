@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.app.acessibilidade.api.domain.model.Avaliacao;
@@ -19,4 +20,7 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao,Long> {
     @Query("SELECT new com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO(a.id, a.comentario, a.estrelas, a.dt_avaliacao, a.usuario.id, a.local.id) " +
     "FROM Avaliacao a")
     List<OUTPUT_Avaliacao_DTO> findAllAvaliacoes();
+
+
+     
 }

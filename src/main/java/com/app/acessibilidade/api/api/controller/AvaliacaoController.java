@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +40,16 @@ public class AvaliacaoController {
     private AvaliacaoService avaliacaoService;
 
 
+    @GetMapping("/filtrar")
+public List<OUTPUT_Avaliacao_DTO> filtrarAvaliacoes(
+        @RequestParam(required = false) Long idLocal,
+        @RequestParam(required = false) String estrelas) {
+
+    // Passa os parâmetros opcionais para o Service
+    return avaliacaoService.filtrarAvaliacoes(idLocal, estrelas);
+ }
+
+
     @GetMapping("")
     public List<OUTPUT_Avaliacao_DTO> listar(){
      
@@ -56,6 +67,8 @@ public class AvaliacaoController {
             return ResponseEntity.notFound().build();
         }
      }
+   
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")

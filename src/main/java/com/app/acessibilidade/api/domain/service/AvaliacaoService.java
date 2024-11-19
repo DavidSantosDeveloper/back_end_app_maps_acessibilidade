@@ -1,5 +1,6 @@
 package com.app.acessibilidade.api.domain.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +15,44 @@ import com.app.acessibilidade.api.domain.repository.*;
 import lombok.AllArgsConstructor;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class AvaliacaoService {
+    @Autowired
     private AvaliacaoRepository avaliacaoRepository;
     
-      public OUTPUT_Avaliacao_DTO findById(Long avaliacaoId){
+      
+     public List<OUTPUT_Avaliacao_DTO> filtrarAvaliacoes(Long idLocal, String estrelas) {
+        // Obtém todas as avaliações
+        List<OUTPUT_Avaliacao_DTO> todasAvaliacoes = ListarAvaliacao();
+
+        // Aplica a filtragem
+        return todasAvaliacoes.stream()
+                .filter(avaliacao -> (idLocal == null || avaliacao.id_Local().equals(idLocal)))
+                .filter(avaliacao -> (estrelas == null || avaliacao.estrelas().equals(estrelas)))
+                .collect(Collectors.toList());
+    }
+
+    public List<OUTPUT_Avaliacao_DTO> ListarAvaliacao2() {
+        return avaliacaoRepository.findAll()
+                .stream()
+                .map(avaliacao -> new OUTPUT_Avaliacao_DTO(
+                        avaliacao.getId(),
+                        avaliacao.getComentario(),
+                        avaliacao.getEstrelas(),
+                        avaliacao.getDt_avaliacao(),
+                        avaliacao.getUsuario().getId(),
+                        avaliacao.getLocal() != null ? avaliacao.getLocal().getId() : null // Extrai apenas o ID
+                ))
+                .collect(Collectors.toList());
+    }
+    
+   
+    
+    
+    public OUTPUT_Avaliacao_DTO findById(Long avaliacaoId){
         Optional<Avaliacao> buscaPelaAvaliacao=avaliacaoRepository.findById(avaliacaoId);
         if (buscaPelaAvaliacao.isEmpty()) {
             return null;
