@@ -31,17 +31,19 @@ public class ItemFotoController {
 
 
     @GetMapping("")
-    public ResponseEntity<List<OUTPUT_ItemFoto_DTO>> listarPorIdAvaliacao(
-            @RequestParam(value = "id_avaliacao", required = false) Long idAvaliacao) {
-    
-        // Lista itens filtrados ou todos se idAvaliacao for nulo
-        List<OUTPUT_ItemFoto_DTO> itens = itemFotoService.listarPorAvaliacao(idAvaliacao);
-    
-        if (itens.isEmpty()) {
-            return ResponseEntity.noContent().build(); // 204 - Sem conteúdo
-        }
-        return ResponseEntity.ok(itens);
+public ResponseEntity<List<OUTPUT_ItemFoto_DTO>> listarFiltrado(
+        @RequestParam(value = "id_avaliacao", required = false) Long idAvaliacao,
+        @RequestParam(value = "id_foto", required = false) Long idFoto) {
+
+    // Lista itens filtrados conforme os parâmetros fornecidos
+    List<OUTPUT_ItemFoto_DTO> itens = itemFotoService.listarFiltrado(idAvaliacao, idFoto);
+
+    if (itens.isEmpty()) {
+        return ResponseEntity.noContent().build(); // 204 - Sem conteúdo
     }
+    return ResponseEntity.ok(itens);
+}
+
     
     // @GetMapping("")
     // public List<OUTPUT_ItemFoto_DTO> listar() {

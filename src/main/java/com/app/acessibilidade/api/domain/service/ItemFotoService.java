@@ -29,13 +29,14 @@ public class ItemFotoService {
         return new OUTPUT_ItemFoto_DTO(itemFoto.getId(), itemFoto.getAvaliacao().getId(), itemFoto.getFoto().getId());
     }
 
-    public List<OUTPUT_ItemFoto_DTO> listarPorAvaliacao(Long idAvaliacao) {
+    public List<OUTPUT_ItemFoto_DTO> listarFiltrado(Long idAvaliacao, Long idFoto) {
         // Busca todos os registros no banco
         List<ItemFoto> todasItemFotos = itemFotoRepository.findAll();
     
-        // Aplica filtragem caso idAvaliacao seja fornecido
+        // Aplica filtragem condicional
         List<ItemFoto> filtradas = todasItemFotos.stream()
                 .filter(itemFoto -> idAvaliacao == null || itemFoto.getAvaliacao().getId().equals(idAvaliacao))
+                .filter(itemFoto -> idFoto == null || (itemFoto.getFoto() != null && itemFoto.getFoto().getId().equals(idFoto)))
                 .toList();
     
         // Converte para DTO
@@ -47,6 +48,7 @@ public class ItemFotoService {
                 ))
                 .toList();
     }
+    
     
 
     // Método para listar todos os ItemFoto
