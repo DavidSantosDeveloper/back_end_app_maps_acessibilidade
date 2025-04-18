@@ -53,32 +53,6 @@ A aplicação está contida em um container docker🐳.
 
 ---
 
-### 📘 Endpoints Disponíves
-
-A API oferece os seguintes endpoints para gerenciamento das entidaes:
-
-#### 1. **Usuários**
-
-- **POST /api/usuarios*: Cadastra um novo usuáio.
-- **GET /api/usuarios/{id}*: Retorna os detalhes de um usuário específco.
-- **PUT /api/usuarios/{id}*: Atualiza as informações de um usuário existete.
-- **DELETE /api/usuarios/{id}*: Remove um usuário do sistma.
-
-#### 2. **Locais Acessíveis**
-
-- **POST /api/locais*: Adiciona um novo local acessíel.
-- **GET /api/locais*: Lista todos os locais acessívis.
-- **GET /api/locais/{id}*: Retorna os detalhes de um local específco.
-- **PUT /api/locais/{id}*: Atualiza as informações de um local existete.
-- **DELETE /api/locais/{id}*: Remove um local do sistma.
-
-#### 3. **Avaliações**
-
-- **POST /api/avaliacoes*: Adiciona uma nova avaliação para um loal.
-- **GET /api/avaliacoes/locais/{id}*: Lista todas as avaliações de um local específco.
-- **DELETE /api/avaliacoes/{id}*: Remove uma avaliação do sistma.
-
----
 
 ### 🧱 Arquitetura e Padrões Utilizados
 
