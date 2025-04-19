@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.acessibilidade.api.domain.dto.*;
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Foto_DTO;
 import com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Foto_DTO;
 import com.app.acessibilidade.api.domain.exception.*;

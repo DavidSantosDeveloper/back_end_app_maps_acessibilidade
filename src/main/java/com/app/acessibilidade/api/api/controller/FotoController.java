@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.acessibilidade.api.domain.dto.*;
+
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Avaliacao_DTO;
 import com.app.acessibilidade.api.domain.dto.input.INPUT_Foto_DTO;
 import com.app.acessibilidade.api.domain.dto.outuput.OUTPUT_Avaliacao_DTO;
